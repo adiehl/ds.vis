@@ -24,17 +24,8 @@ export class DataService {
           () => {
             // now parse the csv data
             try {
-              resolve(JSON.parse(fullData));
+              resolve(fullData);
             } catch (error) {
-              try {
-                this.csv.parse(fullData, {
-                  complete: (result) => {
-                    resolve(result);
-                  }
-                });
-              } catch
-                (error) {
-              }
             }
           }
         );
@@ -47,9 +38,18 @@ export class DataService {
       case 'amazon' :
         switch (column) {
           case 'activity':
-            const  dates = savings[0];
+            let dates = [];
+            const separated = savings.split("\n");
+            if (separated) {
+              for (let line of separated) {
+                const regex = /^"(\d+\/\d+\/\d+)/gm;
+                const data = regex.exec(line);
+                if(data !== null && data[1]) {
+                  dates.push(data[1])
+                }
+              }
+            }
             return this.countQuantity(dates);
-            break;
         }
         break;
       case 'google' :
