@@ -13,10 +13,10 @@ export class AppComponent {
     console.log('do something');
     this.doSomething();
   }
-  public doSomething() {
-    this.amazon.giveMeSomeText().then((data) => {
-      this.output = data.toString();
-    });
+  public async doSomething() {
+    const data = await this.amazon.giveMeSomeText();
+    this.output = data.toString();
+
   }
   public handleFileInput(files) {
 
