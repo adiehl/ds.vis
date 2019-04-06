@@ -84,10 +84,17 @@ export class DataService {
   }
 
   getDateFromTimeStamp(timestamp) {
-    const date = new Date(timestamp * 1000);
-    const hours = date.getHours();
-    const minutes = '0' + date.getMinutes();
-    const seconds = '0' + date.getSeconds();
-    return hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+    const date = new Date(timestamp);
+    let day = date.getDate().toString();
+    if (date.getDate() < 10) {
+      day = '0' + day;
+    }
+    let month = date.getMonth().toString();
+    if (date.getMonth() < 10) {
+      month =  '0' + month;
+    }
+    const year = date.getFullYear().toString();
+    const dateStr = day + month + year;
+    return dateStr;
   }
 }
