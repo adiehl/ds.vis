@@ -10,6 +10,8 @@ export class DatabaseService {
     {name: 'example_data', label: 'Example Data' },
     {name: 'amazon_searches', label: 'Amazon Searches' },
     {name: 'google_searches', label: 'Google Searches' },
+    {name: 'facebook_activity', label: 'Facebook Account Acitivity',
+      description: 'You can upload the file security_and_login_information/account_acitivity.json' },
     {name: 'instagram_searches', label: 'Instagram Searches' }
   ];
 
