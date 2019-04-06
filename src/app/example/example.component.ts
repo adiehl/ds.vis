@@ -28,7 +28,7 @@ export class ExampleComponent implements OnInit {
         const numbers = [];
         for (const line of result.data) {
           // skip headers or so
-          if (i++ === 0) {
+          if (i++ === 0 || i > 100) {
             continue;
           }
           if (line[0] && line[1]) {
