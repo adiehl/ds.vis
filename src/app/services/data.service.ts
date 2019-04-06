@@ -44,8 +44,8 @@ export class DataService {
               for (let line of separated) {
                 const regex = /^"(\d+\/\d+\/\d+)/gm;
                 const data = regex.exec(line);
-                if(data !== null && data[1]) {
-                  dates.push(data[1])
+                if (data !== null && data[1]) {
+                  dates.push(data[1]);
                 }
               }
             }
