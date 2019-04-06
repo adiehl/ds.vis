@@ -15,14 +15,18 @@ export class DataService {
       this.http.get('assets/testdata.csv', {responseType: 'text'})
           .subscribe(
               data => {
-                console.log(data);
                 fullData += data;
               },
               error => {
                 reject(error.toString());
               },
               () => {
-                resolve(fullData.toString());
+                  // now parse the csv data
+                  this.csv.parse(fullData, {
+                      complete: (result) => {
+                          resolve(result);
+                      }
+                  });
               }
           );
     });

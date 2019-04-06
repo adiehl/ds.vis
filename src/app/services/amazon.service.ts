@@ -10,8 +10,8 @@ export class AmazonService {
   constructor(public http: HttpClient, public dataservice: DataService) {
     console.log('Amazon Service loaded');
   }
-  public async giveMeSomeText() {
-      const data = await this.dataservice.getCSV('amazon');
+  public async giveMeSomeData() {
+      const data: any = await this.dataservice.getCSV('amazon');
       return data;
   }
 }

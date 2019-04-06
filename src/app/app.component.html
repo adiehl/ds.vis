@@ -11,6 +11,11 @@
            (change)="handleFileInput($event.target.files)">
   </div>
 </div>
-<pre>{{output}}
-</pre>
+<table>
+  <tr *ngFor="let line of output">
+    <td *ngFor="let field of line">
+      {{field}}
+    </td>
+  </tr>
+</table>
 
