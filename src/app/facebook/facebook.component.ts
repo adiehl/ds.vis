@@ -10,6 +10,8 @@ export class FacebookComponent implements OnInit {
 
   public numbers = [];
   public labels = [];
+  public Daytimenumbers = [];
+  public Daytimelabels = [];
   public showChart = false;
 
   constructor(public db: DatabaseService) {
@@ -20,9 +22,6 @@ export class FacebookComponent implements OnInit {
     const statsObj = await this.getStats();
     const stats = statsObj.activities;
     const currentDate = statsObj.firstDate;
-    console.log('DATES:');
-    console.log(currentDate);
-    console.log(statsObj.lastDate);
     while (currentDate > statsObj.lastDate) {
       const shortDate = this.getDateShort(currentDate);
       let count = 0;
@@ -33,11 +32,15 @@ export class FacebookComponent implements OnInit {
 
       this.labels.push(shortDate);
       currentDate.setDate(currentDate.getDate() - 1);
-      console.log(`Date: ${currentDate} Count: ${count}`);
     }
     for (const stat of Object.keys(stats)) {
       this.numbers.push(stats[stat]);
       this.labels.push(stat);
+    }
+    // daytimes
+    for (let i = 0; i < 24; i++) {
+      this.Daytimelabels.push(i);
+      this.Daytimenumbers.push(statsObj.hours[i]);
     }
     this.showChart = true;
   }
@@ -46,6 +49,10 @@ export class FacebookComponent implements OnInit {
     const data = await this.db.getFile('facebook_activity');
     const structuredData = JSON.parse(data.toString());
     const activities = {};
+    const hours = {};
+    for (let i = 0; i < 24; i++) {
+      hours[i] = 0;
+    }
     let firstDate;
     let lastDate;
     for (const entry of structuredData.account_activity) {
@@ -53,6 +60,7 @@ export class FacebookComponent implements OnInit {
         continue;
       }
       const myDate = new Date(entry.timestamp * 1000);
+      hours[myDate.getHours()]++;
       if (!firstDate) {
         firstDate = myDate;
       }
@@ -63,20 +71,21 @@ export class FacebookComponent implements OnInit {
       }
       lastDate = myDate;
     }
+    console.log(hours);
     return {
       activities,
       firstDate,
-      lastDate
+      lastDate,
+      hours
     };
   }
 
   private getDateShort(date: Date) {
 
-    const newDate = date.getUTCFullYear() + '-' +
-        ('00' + (date.getUTCMonth() + 1)).slice(-2) + '-' +
-        ('00' + date.getUTCDate()).slice(-2);
+    const newDate = date.getFullYear() + '-' +
+        ('00' + (date.getMonth() + 1)).slice(-2) + '-' +
+        ('00' + date.getDate()).slice(-2);
 
-    //console.log(newDate);
     return newDate;
   }
   ngOnInit() {
