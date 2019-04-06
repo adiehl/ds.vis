@@ -12,6 +12,9 @@
   </div>
 </div>
 <table>
+  <h2>Source Data</h2>
+  <pre>{{JSON.stringify(output)}}</pre>
+  <h2>Table</h2>
   <tr *ngFor="let line of output">
     <td *ngFor="let field of line">
       {{field}}

@@ -31,4 +31,23 @@ export class DataService {
           );
     });
   }
+
+    getData(type) {
+        let fullData = '';
+        return new Promise((resolve, reject) => {
+            this.http.get('assets/testdata.json', {responseType: 'text'})
+                .subscribe(
+                    data => {
+                        fullData += data;
+                    },
+                    error => {
+                        reject(error);
+                    },
+                    () => {
+                        // now parse the csv data
+                        resolve(JSON.parse(fullData));
+                    }
+                );
+        });
+    }
 }
