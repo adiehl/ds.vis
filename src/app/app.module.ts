@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ChartsModule } from 'ng2-charts';
 import { PapaParseModule } from 'ngx-papaparse';
 
 import { AmazonService } from './services/amazon.service';
@@ -21,6 +21,7 @@ import { InstagramComponent } from './instagram/instagram.component';
 import { ExampleComponent } from './example/example.component';
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import { DatabaseService } from './services/database.service';
+import { TimeChartComponent } from './time-chart/time-chart.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { DatabaseService } from './services/database.service';
     FacebookComponent,
     InstagramComponent,
     ExampleComponent,
-    FileuploadComponent
+    FileuploadComponent,
+    TimeChartComponent
   ],
   imports: [ // Hier werden externe Module eingetragen
     BrowserModule,
@@ -39,6 +41,7 @@ import { DatabaseService } from './services/database.service';
     MatTabsModule,
     BrowserAnimationsModule,
     FormsModule,
+    ChartsModule,
   ],
   providers: [ // Hier werden die eigenen Services eingetragen
      AmazonService,
