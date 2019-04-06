@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DatabaseService } from '../services/database.service';
 
 @Component({
   selector: 'app-fileupload',
@@ -7,14 +8,11 @@ import { Component } from '@angular/core';
 })
 
 export class FileuploadComponent {
-  public dataTypes = [
-    {name: 'example_data', label: 'Example Data' },
-    {name: 'amazon_searches', label: 'Amazon Searches' },
-    {name: 'google_searches', label: 'Google Searches' },
-    {name: 'instagram_searches', label: 'Instagram Searches' }
-  ];
+  public dataTypes = [];
   public fileType = 'amazon_searches';
-
+  constructor(public db: DatabaseService) {
+    this.dataTypes = db.dataTypes;
+  }
   handleFileInput(files) {
     const reader = new FileReader();
     const file = files[0];
@@ -22,7 +20,7 @@ export class FileuploadComponent {
     reader.onload = (event) => {
       const save = reader.result;
       console.log(save); // {hp: 32, maxHp: 50, mp: 11, maxMp: 23}
-      window.localStorage.setItem('xx', save.toString());
+      this.db.saveFile(this.fileType, save.toString());
     };
   }
   //

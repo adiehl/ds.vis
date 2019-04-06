@@ -20,6 +20,7 @@ import { FacebookComponent } from './facebook/facebook.component';
 import { InstagramComponent } from './instagram/instagram.component';
 import { ExampleComponent } from './example/example.component';
 import { FileuploadComponent } from './fileupload/fileupload.component';
+import { DatabaseService } from './services/database.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { FileuploadComponent } from './fileupload/fileupload.component';
     PapaParseModule,
     MatTabsModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [ // Hier werden die eigenen Services eingetragen
      AmazonService,
@@ -45,6 +46,7 @@ import { FileuploadComponent } from './fileupload/fileupload.component';
      GoogleService,
      InstagramService,
      DataService,
+     DatabaseService,
   ],
   bootstrap: [AppComponent]
 })

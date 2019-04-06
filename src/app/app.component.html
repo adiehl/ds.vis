@@ -30,25 +30,9 @@
   <app-facebook *ngIf="currentPage == 'facebook'"></app-facebook>
   <app-instagram *ngIf="currentPage == 'instagram'"></app-instagram>
   <app-example *ngIf="currentPage == 'example'"></app-example>
-
-  <form>
-
-    <div class="form-group">
-      <label for="dataFile">Uploade CSV or JSON data File</label>
-      <input type="file" class="form-control-file" id="dataFile" (change)="handleFileInput($event.target.files)">
-    </div>
-  </form>
+  <app-fileupload></app-fileupload>
 
 
 </div>
-<table>
-  <h2>Source Data</h2>
-  <pre>{{JSON.stringify(output)}}</pre>
-  <h2>Table</h2>
-  <tr *ngFor="let line of output">
-    <td *ngFor="let field of line">
-      {{field}}
-    </td>
-  </tr>
-</table>
+
 
