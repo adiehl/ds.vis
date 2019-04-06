@@ -7,9 +7,7 @@
   </div>
 
   <div class="form-group">
-    <label for="dataFile">Uploade CSV or JSON data File</label>
+    <label for="dataFile">Upload CSV or JSON data File</label>
     <input type="file" class="form-control-file" name="dataFile" id="dataFile" (change)="handleFileInput($event.target.files)">
   </div>
 </form>
-
-{{fileType}}
