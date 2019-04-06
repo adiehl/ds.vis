@@ -97,4 +97,8 @@ export class DataService {
     const dateStr = day + month + year;
     return dateStr;
   }
+
+  countQuantity(data) {
+    return data.reduce((b, c) => ((b[b.findIndex(d => d.el === c)] || b[b.push({el: c, count: 0}) - 1]).count++, b), []);
+  }
 }
