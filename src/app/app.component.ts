@@ -7,16 +7,17 @@ import { AmazonService } from './services/amazon.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public output = '';
+  public output = [];
   public fileToUpload;
   constructor(public amazon: AmazonService) {
     console.log('do something');
     this.doSomething();
   }
-  public doSomething() {
-    this.amazon.giveMeSomeText().then((data) => {
-      this.output = data.toString();
-    });
+  public async doSomething() {
+    const csvData:any = await this.amazon.giveMeSomeData();
+    console.log(csvData);
+    this.output = csvData.data;
+
   }
   public handleFileInput(files) {
 
