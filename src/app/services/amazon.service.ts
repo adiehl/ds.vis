@@ -11,4 +11,8 @@ export class AmazonService {
     console.log('Amazon Service loaded');
   }
 
+  async getActivityData() {
+    const returnValue = this.dataservice.getDataFromFile('amazon', 'activity', 'assets/Arbeitsdatei Amazon.csv');
+    return returnValue;
+  }
 }
