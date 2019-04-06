@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +19,7 @@ import { GoogleComponent } from './google/google.component';
 import { FacebookComponent } from './facebook/facebook.component';
 import { InstagramComponent } from './instagram/instagram.component';
 import { ExampleComponent } from './example/example.component';
+import { FileuploadComponent } from './fileupload/fileupload.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +28,16 @@ import { ExampleComponent } from './example/example.component';
     GoogleComponent,
     FacebookComponent,
     InstagramComponent,
-    ExampleComponent
+    ExampleComponent,
+    FileuploadComponent
   ],
   imports: [ // Hier werden externe Module eingetragen
     BrowserModule,
     HttpClientModule,
     PapaParseModule,
     MatTabsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule
   ],
   providers: [ // Hier werden die eigenen Services eingetragen
      AmazonService,
