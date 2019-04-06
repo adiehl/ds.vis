@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { DataService } from './data.service';
-
+import {AmazonService} from './amazon.service';
+import {GoogleService} from './google.service';
+import {HttpClient} from '@angular/common/http';
+import {DataService} from './data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,32 +10,56 @@ import { DataService } from './data.service';
 export class InstagramService {
 
   constructor(public http: HttpClient, public dataservice: DataService) {
-    console.log('Instagram Service loaded');
+    console.log('Alright.');
   }
-  public async giveMeSomeData() {
-    const data: any = await this.dataservice.getCSV('instagram');
-    const jsondata: any = await this.dataservice.getData('test');
-    const instagramLikes = [];
-    const instagramData = jsondata.media_likes;
-    for (const line of instagramData) {
-      instagramLikes.push([
-        line[0],
-        line[1]
-      ]);
+
+  returnMediaLikes() {
+    return this.dataservice.getDataFromFile('instagram', 'media likes', 'assets/likes.json');
+  }
+
+  returnUsername() {
+
+    return Promise.resolve(this.dataservice.getDataFromFile('instagram', 'profile', 'assets/profile.json'));
+
+  }
+
+  returnMessages() {
+
+    return Promise.resolve(this.dataservice.getDataFromFile('instagram', 'messages', 'assets/messages.json'));
+  }
+
+
+
+
+  async getLikesPerDay() {
+    const likes = await this.dataservice.getDataFromFile('instagram', 'media likes', 'assets/likes.json');
+
+    const likes2 = [];
+    let i;
+    for (i = 0; i < likes.length; i++) {
+      likes2.push(likes[i][0].slice(0, 10));
     }
-    console.log(jsondata);
 
-    // return data;
-    return instagramLikes;
-  }
+    const likes3 =  await this.dataservice.countQuantity(likes2);
+    console.log(likes3);
+    return likes3;
 
+    /*
+    const dailyLikes = {};
 
-  public async likesPerDay(){
-    const instagramLikes = this.giveMeSomeData();
-    return none;
-  }
+    for (const i of likes ) {
+      const day = this.getDate(likes[i][0]).toString();
+      if (!dailyLikes[day]) {
+        dailyLikes[day] = 1;
+      } else {
+        dailyLikes[day]++;
+      }
+    }
 
-  public async extractDate(date) {
-    return date.slice(0, 10);
+    */
+
+    return likes;
   }
 }
+
+

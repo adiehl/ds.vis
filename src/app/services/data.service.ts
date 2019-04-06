@@ -78,6 +78,31 @@ export class DataService {
             }
             return instagramLikes;
             break;
+
+          case 'profile' :
+
+            return String(savings.username);
+
+            break;
+
+          case 'messages' :
+
+            const instagramMessages = [];
+            const instagramMessagesData = savings;
+            console.log(instagramMessagesData);
+            for (const i  of instagramMessagesData) {
+              for (const j of i.conversation) {
+                instagramMessages.push([
+                  j.sender,
+                  j.created_at
+                  ]);
+
+              }
+            }
+            return instagramMessages;
+
+            break;
+
         }
         break;
     }
