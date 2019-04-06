@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { ChartsModule } from 'ng2-charts';
 import { PapaParseModule } from 'ngx-papaparse';
 
 import { AmazonService } from './services/amazon.service';
@@ -18,6 +19,9 @@ import { GoogleComponent } from './google/google.component';
 import { FacebookComponent } from './facebook/facebook.component';
 import { InstagramComponent } from './instagram/instagram.component';
 import { ExampleComponent } from './example/example.component';
+import { FileuploadComponent } from './fileupload/fileupload.component';
+import { DatabaseService } from './services/database.service';
+import { TimeChartComponent } from './time-chart/time-chart.component';
 
 @NgModule({
   declarations: [
@@ -26,14 +30,18 @@ import { ExampleComponent } from './example/example.component';
     GoogleComponent,
     FacebookComponent,
     InstagramComponent,
-    ExampleComponent
+    ExampleComponent,
+    FileuploadComponent,
+    TimeChartComponent
   ],
   imports: [ // Hier werden externe Module eingetragen
     BrowserModule,
     HttpClientModule,
     PapaParseModule,
     MatTabsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ChartsModule,
   ],
   providers: [ // Hier werden die eigenen Services eingetragen
      AmazonService,
@@ -41,6 +49,7 @@ import { ExampleComponent } from './example/example.component';
      GoogleService,
      InstagramService,
      DataService,
+     DatabaseService,
   ],
   bootstrap: [AppComponent]
 })
