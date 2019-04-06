@@ -10,6 +10,7 @@ import {InstagramService} from './services/instagram.service';
 })
 export class AppComponent {
   public output = [];
+  public currentPage = 'amazon';
   public fileToUpload;
   constructor(public amazon: AmazonService, public google: GoogleService, public instagram: InstagramService) {
     console.log('do something');
@@ -24,5 +25,8 @@ export class AppComponent {
   }
   public handleFileInput(files) {
 
+  }
+  public showPage(pageName) {
+    this.currentPage = pageName;
   }
 }

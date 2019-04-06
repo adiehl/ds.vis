@@ -1,15 +1,45 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to DS-VIS
-  </h1>
-  Please upload a CSV file first:
-  <div class="form-group">
-    <label for="file">Choose File</label>
-    <input type="file"
-           id="file"
-           (change)="handleFileInput($event.target.files)">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Ds-Vis</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="nav navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="showPage('amazon')">Amazon</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="showPage('google')">Google</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="showPage('facebook')">Facebook</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="showPage('instagram')">Instagram</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#" (click)="showPage('example')">Example</a>
+      </li>
+    </ul>
   </div>
+</nav>
+<div class="border maincontent p-3">
+  <app-amazon *ngIf="currentPage == 'amazon'"></app-amazon>
+  <app-google *ngIf="currentPage == 'google'"></app-google>
+  <app-facebook *ngIf="currentPage == 'facebook'"></app-facebook>
+  <app-instagram *ngIf="currentPage == 'instagram'"></app-instagram>
+  <app-example *ngIf="currentPage == 'example'"></app-example>
+
+  <form>
+
+    <div class="form-group">
+      <label for="dataFile">Uploade CSV or JSON data File</label>
+      <input type="file" class="form-control-file" id="dataFile" (change)="handleFileInput($event.target.files)">
+    </div>
+  </form>
+
+
 </div>
 <table>
   <h2>Source Data</h2>
