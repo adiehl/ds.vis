@@ -12,6 +12,8 @@ export class AmazonService {
   }
   public async giveMeSomeData() {
       const data: any = await this.dataservice.getCSV('amazon');
+      const jsondata: any = await this.dataservice.getData('test');
+      console.log(jsondata);
       return data;
   }
 }
