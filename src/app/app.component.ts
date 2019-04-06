@@ -16,13 +16,11 @@ export class AppComponent {
     console.log('do something');
     this.doSomething();
   }
+
   public async doSomething() {
-   // const csvData: any = await this.amazon.giveMeSomeData();
-    //console.log(csvData);
-    //this.output = csvData;
-    const jsonData: any = await this.instagram.returnMediaLikes();
-    this.output = jsonData;
+
   }
+
   public handleFileInput(files) {
 
   }

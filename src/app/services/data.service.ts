@@ -46,20 +46,15 @@ export class DataService {
     switch (type) {
       case 'amazon' :
         switch (column) {
-          case 'x':
+          case 'activity':
+            const  dates = savings[0];
+            return this.countQuantity(dates);
             break;
         }
         break;
       case 'google' :
         switch (column) {
-          case 'location history timestamps' :
-            const locations = savings.locations;
-            const times = [];
-            const rows = [];
-            for (const line of locations) {
-              times.push(this.getDateFromTimeStamp(line.timestampMs));
-            }
-            return times;
+          case 'x':
             break;
         }
         break;
@@ -96,5 +91,9 @@ export class DataService {
     const year = date.getFullYear().toString();
     const dateStr = day + month + year;
     return dateStr;
+  }
+
+  async countQuantity(data) {
+    return data.reduce((b, c) => ((b[b.findIndex(d => d.el === c)] || b[b.push({el: c, count: 0}) - 1]).count++, b), []);
   }
 }
