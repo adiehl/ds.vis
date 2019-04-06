@@ -15,4 +15,9 @@ export class AmazonService {
     const returnValue = this.dataservice.getDataFromFile('amazon', 'activity', 'assets/Arbeitsdatei Amazon.csv');
     return returnValue;
   }
+
+  async getOperatingSystem(){
+    const returnValue = this.dataservice.getDataFromFile('amazon', 'operating system' , 'assets/Arbeitsdatei Amazon.csv');
+    return returnValue;
+  }
 }

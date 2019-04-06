@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AmazonService } from "../services/amazon.service";
 
 @Component({
   selector: 'app-amazon',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./amazon.component.scss']
 })
 export class AmazonComponent implements OnInit {
-
-  constructor() { }
+  public output = '';
+  constructor(public amazon: AmazonService) {
+    this.doSomething();
+  }
+  public async doSomething() {
+    this.output = await this.amazon.getOperatingSystem();
+  }
 
   ngOnInit() {
+
   }
 
 }
