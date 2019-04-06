@@ -22,6 +22,7 @@ import { ExampleComponent } from './example/example.component';
 import { FileuploadComponent } from './fileupload/fileupload.component';
 import { DatabaseService } from './services/database.service';
 import { TimeChartComponent } from './time-chart/time-chart.component';
+import { HelpComponent } from './help/help.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { TimeChartComponent } from './time-chart/time-chart.component';
     InstagramComponent,
     ExampleComponent,
     FileuploadComponent,
-    TimeChartComponent
+    TimeChartComponent,
+    HelpComponent
   ],
   imports: [ // Hier werden externe Module eingetragen
     BrowserModule,
