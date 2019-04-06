@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AmazonService } from './services/amazon.service';
+import {GoogleService} from './services/google.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { AmazonService } from './services/amazon.service';
 export class AppComponent {
   public output = [];
   public fileToUpload;
-  constructor(public amazon: AmazonService) {
+  constructor(public amazon: AmazonService, public google: GoogleService) {
     console.log('do something');
     this.doSomething();
   }
@@ -17,7 +18,6 @@ export class AppComponent {
     const csvData: any = await this.amazon.giveMeSomeData();
     console.log(csvData);
     this.output = csvData;
-
   }
   public handleFileInput(files) {
 
