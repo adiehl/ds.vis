@@ -50,6 +50,21 @@ export class DataService {
               }
             }
             return this.countQuantity(dates);
+            break;
+          case 'operating system' :
+            let os = [];
+            const lines = savings.split("\n");
+            if (lines) {
+              for (let line of lines) {
+                const regex = /(Windows|Android)/gm;
+                const data = regex.exec(line);
+                if (data !== null ) {
+                  os.push(data[0]);
+                }
+              }
+            }
+            return this.countQuantity(os);
+            break;
         }
         break;
       case 'google' :
@@ -128,4 +143,5 @@ export class DataService {
   async countQuantity(data) {
     return data.reduce((b, c) => ((b[b.findIndex(d => d.el === c)] || b[b.push({el: c, count: 0}) - 1]).count++, b), []);
   }
+
 }
