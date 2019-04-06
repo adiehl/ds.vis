@@ -12,7 +12,7 @@ export class GoogleService {
   }
 
   async returnTimeStamps() {
-    const times: any = await this.dataservice.getDataFromFile('google', 'location history', 'assets/TestLocationData.json');
+    const times: any = await this.dataservice.getDataFromFile('google', 'location history timestamps', 'assets/TestLocationData.json');
     return times;
   }
 }

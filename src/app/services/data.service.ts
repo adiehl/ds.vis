@@ -42,6 +42,7 @@ export class DataService {
   }
 
   async getDataFromFile(type, column, url) {
+    const savings: any = await this.getPromise(url);
     switch (type) {
       case 'amazon' :
         switch (column) {
@@ -51,9 +52,8 @@ export class DataService {
         break;
       case 'google' :
         switch (column) {
-          case 'location history' :
-            const history: any = await this.getPromise(url);
-            const locations = history.locations;
+          case 'location history timestamps' :
+            const locations = savings.locations;
             const times = [];
             const rows = [];
             for (const line of locations) {
@@ -61,11 +61,25 @@ export class DataService {
             }
             return times;
             break;
-          case 'facebook' :
-            break;
-          case 'instagram':
+        }
+        break;
+      case 'facebook' :
+        break;
+      case 'instagram':
+        switch (column) {
+          case 'media likes' :
+            const instagramLikes = [];
+            const instagramData = savings.media_likes;
+            for (const line of instagramData) {
+              instagramLikes.push([
+                line[0],
+                line[1]
+              ]);
+            }
+            return instagramLikes;
             break;
         }
+        break;
     }
   }
 
