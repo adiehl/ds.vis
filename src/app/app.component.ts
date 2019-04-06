@@ -14,9 +14,9 @@ export class AppComponent {
     this.doSomething();
   }
   public async doSomething() {
-    const csvData:any = await this.amazon.giveMeSomeData();
+    const csvData: any = await this.amazon.giveMeSomeData();
     console.log(csvData);
-    this.output = csvData.data;
+    this.output = csvData;
 
   }
   public handleFileInput(files) {
