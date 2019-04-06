@@ -8,6 +8,7 @@ import { AmazonService } from './services/amazon.service';
 })
 export class AppComponent {
   public output = [];
+  public currentPage = 'amazon';
   public fileToUpload;
   constructor(public amazon: AmazonService) {
     console.log('do something');
@@ -21,5 +22,8 @@ export class AppComponent {
   }
   public handleFileInput(files) {
 
+  }
+  public showPage(pageName) {
+    this.currentPage = pageName;
   }
 }
