@@ -13,7 +13,9 @@ export class DatabaseService {
     {name: 'facebook_activity', label: 'Facebook Account Acitivity',
       description: 'You can upload the file security_and_login_information/account_acitivity.json' },
     {name: 'instagram_likes', label: 'Instagram Likes',
-      description: 'You can upload the file likes.json' }
+      description: 'You can upload the file likes.json' },
+    {name: 'instagram_messages', label: 'Instagram Messages',
+      description: 'You can upload the file messages.json' }
   ];
 
   constructor() {

@@ -12,7 +12,7 @@ export class InstagramService {
   }
 
   returnMediaLikes() {
-    return this.dataservice.getFile('instagram', 'media likes', 'assets/likes.json');
+    // return this.dataservice.getFile('instagram', 'media likes', 'assets/likes.json');
   }
 
   returnUsername() {
@@ -21,7 +21,7 @@ export class InstagramService {
 
   }
 
-  returnMessages() {
+  async returnMessages() {
 
     return Promise.resolve(this.dataservice.getDataFromFile('instagram', 'messages', 'assets/messages.json'));
   }
@@ -38,19 +38,22 @@ export class InstagramService {
     console.log(likes3);
     return likes3;
 
-    /*
-    const dailyLikes = {};
 
-    for (const i of likes ) {
-      const day = this.getDate(likes[i][0]).toString();
-      if (!dailyLikes[day]) {
-        dailyLikes[day] = 1;
-      } else {
-        dailyLikes[day]++;
-      }
+    return likes;
+  }
+
+  async getMessagesPerDay() {
+    const likes = await this.getMessagesCountFromFile();
+    const likes2 = [];
+    let i;
+    for (i = 0; i < likes.length; i++) {
+      likes2.push(likes[i][1].slice(0, 10));
     }
 
-    */
+    const likes3 =  await this.dataservice.countQuantity(likes2);
+    console.log(likes3);
+    return likes3;
+
 
     return likes;
   }
@@ -67,6 +70,23 @@ export class InstagramService {
       ]);
     }
     return instagramLikes;
+  }
+
+  protected async getMessagesCountFromFile() {
+    const savings = await this.db.getFile('instagram_messages');
+    const instagramMessages = [];
+    const instagramMessagesData = JSON.parse(savings.toString());
+    console.log(instagramMessagesData);
+    for (const i  of instagramMessagesData) {
+      for (const j of i.conversation) {
+        instagramMessages.push([
+          j.sender,
+          j.created_at
+        ]);
+
+      }
+    }
+    return instagramMessages;
   }
 }
 
