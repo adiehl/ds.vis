@@ -16,7 +16,7 @@ export class AmazonService {
     const savings = await this.db.getFile('amazon_searches');
 
     let dates = [];
-    const separated = savings.split("\n");
+    const separated = savings.toString().split("\n");
     if (separated) {
       for (let line of separated) {
         const regex = /^"(\d+\/\d+\/\d+)/gm;
@@ -37,7 +37,7 @@ export class AmazonService {
   async getOperatingSystem(){
     const savings = await this.db.getFile('amazon_searches');
     let os = [];
-    const lines = savings.split("\n");
+    const lines = savings.toString().split("\n");
     if (lines) {
       for (let line of lines) {
         const regex = /(Windows|Android)/gm;
@@ -52,12 +52,12 @@ export class AmazonService {
   }
   async getDurations() {
     const savings = await this.db.getFile('amazon_searches');
-    const lines2 = savings.split("\n");
+    const lines2 = savings.toString().split("\n");
     const durations = [];
     const durationsW = [];
     let sumHours = 0;
     let sumMinutes = 0;
-    if (lines) {
+    if (lines2) {
       for (let line of lines2) {
         const regex = /(\d+\:\d+\.0)/;
         const data = regex.exec(line);
@@ -82,7 +82,7 @@ export class AmazonService {
   }
   async getHours() {
     const savings = await this.db.getFile('amazon_searches');
-    const times = savings.split("\n");
+    const times = savings.toString().split("\n");
     const timeList = [];
     let hoursT = [];
     if (times) {
