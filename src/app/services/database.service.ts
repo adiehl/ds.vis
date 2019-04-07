@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Store, set, get } from 'idb-keyval';
+import { Store, set, get, clear } from 'idb-keyval';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,10 @@ export class DatabaseService {
     {name: 'google_searches', label: 'Google Searches' },
     {name: 'facebook_activity', label: 'Facebook Account Acitivity',
       description: 'You can upload the file security_and_login_information/account_acitivity.json' },
-    {name: 'instagram_searches', label: 'Instagram Searches' }
+    {name: 'instagram_likes', label: 'Instagram Likes',
+      description: 'You can upload the file likes.json' },
+    {name: 'instagram_messages', label: 'Instagram Messages',
+      description: 'You can upload the file messages.json' }
   ];
 
   constructor() {
@@ -20,6 +23,9 @@ export class DatabaseService {
 
   public async saveFile(filename, filecontent) {
     await set(filename, filecontent);
+  }
+  public async clear() {
+    await clear();
   }
 
   public async getFile(filename) {
