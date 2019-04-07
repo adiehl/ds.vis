@@ -20,8 +20,8 @@ export class AmazonComponent implements OnInit {
 
   public async initHoursGraph() {
     const labels = await this.amazon.getHours();
-    const sum = 0;
-    for(const i of labels){
+    let sum = 0;
+    for(const i of labels) {
       sum += Number(i.count);
     }
     console.log(sum);
@@ -36,13 +36,13 @@ export class AmazonComponent implements OnInit {
   public async initActivityGraph(){
     const label = await this.amazon.getActivityData();
     const helpLabels = [];
-    const sum = 0;
+    let sum = 0;
     let helpLabels2 = [];
-    for(const i of label){
+    for (const i of label) {
       sum += Number(i.count);
     }
     for(const line of label){
-      this.numbers.push((Number(line.count)/sum) * 100);
+      this.numbers.push((Number(line.count) / sum) * 100);
       helpLabels.push(line.el);
     }
     helpLabels2 = this.sortDates(helpLabels);
@@ -52,13 +52,13 @@ export class AmazonComponent implements OnInit {
     this.showChart = true;
   }
   public sort(array){
-    var temp;
+    let temp;
 
-    for(var i=0; i<array.length; i++){
-      var mi = i;
+    for (let i = 0; i < array.length; i++){
+      let mi = i;
 
-      for(var j = i + 1; j<array.length; j++) {
-        if(Number(array[j]) < Number(array[mi])) {
+      for (let j = i + 1; j < array.length; j++) {
+        if (Number(array[j]) < Number(array[mi])) {
           mi = j;
         }
       }
@@ -69,10 +69,10 @@ export class AmazonComponent implements OnInit {
     }
   }
 
-  public sortDates(list){
+  public sortDates(list) {
     const timestamps = [];
     const dates = []
-    for(const i of list){
+    for (const i of list) {
       timestamps.push(Date.parse(i));
     }
     this.sort(timestamps);
