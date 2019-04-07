@@ -24,6 +24,9 @@
       <li class="nav-item{{ currentPage == 'example' ? ' active' : '' }}">
         <a class="nav-link" href="#" (click)="showPage('example')">Example</a>
       </li>
+      <li class="nav-item{{ currentPage == 'help' ? ' active' : '' }}">
+        <a class="nav-link" href="#" (click)="showPage('help')">Help</a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -34,6 +37,7 @@
   <app-instagram *ngIf="currentPage == 'instagram'"></app-instagram>
   <app-example *ngIf="currentPage == 'example'"></app-example>
   <app-fileupload *ngIf="currentPage == 'fileupload'"></app-fileupload>
+  <app-help *ngIf="currentPage == 'help'"></app-help>
 
 
 </div>

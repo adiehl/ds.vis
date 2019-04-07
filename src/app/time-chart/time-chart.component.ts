@@ -13,6 +13,7 @@ export class TimeChartComponent implements OnInit {
   @Input() numberData: any;
   @Input() dateData: any = [];
   @Input() label = 'Hello';
+  @Input() chartType = 'line';
   public showChart = false;
   public barChartLabels = [];
   public barChartType = 'line';
@@ -26,6 +27,7 @@ export class TimeChartComponent implements OnInit {
 
   ngOnInit() {
     this.barChartLabels = this.dateData;
+    this.barChartType = this.chartType;
 
     this.barChartData.push(
         {data: this.numberData, label: this.label}
