@@ -1,12 +1,37 @@
 <form>
+  <!--<ng-container *ngFor="let dataType of dataTypes">-->
+    <!--<label class="custom-control custom-radio">-->
+      <!--<span class="custom-control-label">{{dataType.label}}</span>-->
+    <!--</label>-->
+    <!--<input class="" type="radio" name="dataType" id="dataType_{{dataType.name}}" value="{{dataType.name}}" [(ngModel)]="fileType" >-->
+
+    <!--<p class="small" *ngIf="dataType.description">-->
+      <!--{{dataType.description}}-->
+    <!--</p>-->
+  <!--</ng-container>-->
+
+  <!--<label class="custom-control custom-radio">-->
+    <!--<input type="radio" name="radio-stacked" checked="" class="custom-control-input" value="2"><span class="custom-control-label">Default Radio</span>-->
+  <!--</label>-->
+  <!--<label class="custom-control custom-radio custom-control-inline">-->
+    <!--<input type="radio" name="radio-inline" class="custom-control-input" value="1"><span class="custom-control-label">Default Radio</span>-->
+  <!--</label>-->
   <div class="form-check" *ngFor="let dataType of dataTypes">
-    <input class="form-check-input" type="radio" name="dataType" id="dataType_{{dataType.name}}" value="{{dataType.name}}" [(ngModel)]="fileType" >
-    <label class="form-check-label" for="dataType_{{dataType.name}}">
-      {{dataType.label}}
-    </label>
-    <p class="small" *ngIf="dataType.description">
-      {{dataType.description}}
-    </p>
+    <div class="row">
+      <div class="md-2 p-1">
+        <input class="dradio" type="radio" name="dataType" id="dataType_{{dataType.name}}" value="{{dataType.name}}" [(ngModel)]="fileType" >
+
+      </div>
+      <div class="md-10">
+        <label class="custom-control custom-radio dlabel" for="dataType_{{dataType.name}}">
+          {{dataType.label}}
+        </label>
+        <p class="small" *ngIf="dataType.description" style="padding-left: 1.5rem">
+          {{dataType.description}}
+        </p>
+      </div>
+    </div>
+
   </div>
 
   <div class="form-group">

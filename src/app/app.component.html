@@ -1,46 +1,100 @@
+<!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+<div class="dashboard-main-wrapper">
+  <!-- ============================================================== -->
+  <!-- navbar -->
+  <!-- ============================================================== -->
+  <div class="dashboard-header">
+    <nav class="navbar navbar-expand-lg bg-white fixed-top">
+      <a class="navbar-brand" href="index.html">Data Conquest</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse " id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto navbar-right-top">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Ds-Vis</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="nav navbar-nav">
-      <li class="nav-item{{ currentPage == 'fileupload' ? ' active' : '' }}">
-        <a class="nav-link" href="#" (click)="showPage('fileupload')">Upload Data</a>
-      </li>
-      <li class="nav-item{{ currentPage == 'amazon' ? ' active' : '' }}">
-        <a class="nav-link" href="#" (click)="showPage('amazon')">Amazon</a>
-      </li>
-      <li class="nav-item{{ currentPage == 'google' ? ' active' : '' }}">
-        <a class="nav-link" href="#" (click)="showPage('google')">Google</a>
-      </li>
-      <li class="nav-item{{ currentPage == 'facebook' ? ' active' : '' }}">
-        <a class="nav-link" href="#" (click)="showPage('facebook')">Facebook</a>
-      </li>
-      <li class="nav-item{{ currentPage == 'instagram' ? ' active' : '' }}">
-        <a class="nav-link" href="#" (click)="showPage('instagram')">Instagram</a>
-      </li>
-      <li class="nav-item{{ currentPage == 'example' ? ' active' : '' }}">
-        <a class="nav-link" href="#" (click)="showPage('example')">Example</a>
-      </li>
-      <li class="nav-item{{ currentPage == 'help' ? ' active' : '' }}">
-        <a class="nav-link" href="#" (click)="showPage('help')">Help</a>
-      </li>
-    </ul>
+        </ul>
+      </div>
+    </nav>
   </div>
-</nav>
-<div class="border maincontent p-3">
-  <app-amazon *ngIf="currentPage == 'amazon'"></app-amazon>
-  <app-google *ngIf="currentPage == 'google'"></app-google>
-  <app-facebook *ngIf="currentPage == 'facebook'"></app-facebook>
-  <app-instagram *ngIf="currentPage == 'instagram'"></app-instagram>
-  <app-example *ngIf="currentPage == 'example'"></app-example>
-  <app-fileupload *ngIf="currentPage == 'fileupload'"></app-fileupload>
-  <app-help *ngIf="currentPage == 'help'"></app-help>
+  <!-- ============================================================== -->
+  <!-- end navbar -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- left sidebar -->
+  <!-- ============================================================== -->
+  <div class="nav-left-sidebar sidebar-dark">
+    <div class="menu-list">
+      <nav class="navbar navbar-expand-lg navbar-light">
 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav flex-column">
 
-</div>
+            <li class="nav-item{{ currentPage == 'fileupload' ? ' active' : '' }}">
+              <a class="nav-link" href="#" (click)="showPage('fileupload')">Upload Data</a>
+            </li>
+            <li class="nav-item{{ currentPage == 'amazon' ? ' active' : '' }}">
+              <a class="nav-link" href="#" (click)="showPage('amazon')">Amazon</a>
+            </li>
+            <li class="nav-item{{ currentPage == 'google' ? ' active' : '' }}">
+              <a class="nav-link" href="#" (click)="showPage('google')">Google</a>
+            </li>
+            <li class="nav-item{{ currentPage == 'facebook' ? ' active' : '' }}">
+              <a class="nav-link" href="#" (click)="showPage('facebook')">Facebook</a>
+            </li>
+            <li class="nav-item{{ currentPage == 'instagram' ? ' active' : '' }}">
+              <a class="nav-link" href="#" (click)="showPage('instagram')">Instagram</a>
+            </li>
+            <li class="nav-item{{ currentPage == 'example' ? ' active' : '' }}">
+              <a class="nav-link" href="#" (click)="showPage('example')">Example</a>
+            </li>
+            <li class="nav-item{{ currentPage == 'help' ? ' active' : '' }}">
+              <a class="nav-link" href="#" (click)="showPage('help')">Help</a>
+            </li>
+
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <!-- ============================================================== -->
+  <!-- end left sidebar -->
+  <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- wrapper  -->
+  <!-- ============================================================== -->
+  <div class="dashboard-wrapper">
+    <div class="dashboard-finance">
+      <div class="container-fluid dashboard-content">
+        <div class="border maincontent p-3">
+          <app-amazon *ngIf="currentPage == 'amazon'"></app-amazon>
+          <app-google *ngIf="currentPage == 'google'"></app-google>
+          <app-facebook *ngIf="currentPage == 'facebook'"></app-facebook>
+          <app-instagram *ngIf="currentPage == 'instagram'"></app-instagram>
+          <app-example *ngIf="currentPage == 'example'"></app-example>
+          <app-fileupload *ngIf="currentPage == 'fileupload'"></app-fileupload>
+          <app-help *ngIf="currentPage == 'help'"></app-help>
+        </div>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- end footer -->
+    <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- end wrapper  -->
+  <!-- ============================================================== -->
+</div>    <!-- ============================================================== -->
+<!-- main wrapper -->
+<!-- ============================================================== -->
+
 
 
 
