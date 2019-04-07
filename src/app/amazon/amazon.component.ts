@@ -12,7 +12,7 @@ export class AmazonComponent implements OnInit {
     this.doSomething();
   }
   public async doSomething() {
-    this.output = await this.amazon.getOperatingSystem();
+    this.output = await this.amazon.getHours();
   }
 
   ngOnInit() {

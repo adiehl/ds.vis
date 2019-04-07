@@ -20,4 +20,10 @@ export class AmazonService {
     const returnValue = this.dataservice.getDataFromFile('amazon', 'operating system' , 'assets/Arbeitsdatei Amazon.csv');
     return returnValue;
   }
+  async getDurations(){
+    return this.dataservice.getDataFromFile('amazon', 'duration', 'assets/Arbeitsdatei Amazon.csv');
+  }
+  async getHours(){
+    return this.dataservice.getDataFromFile('amazon', 'get times', 'assets/Arbeitsdatei Amazon.csv');
+  }
 }

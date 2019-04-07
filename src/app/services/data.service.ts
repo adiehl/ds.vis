@@ -58,13 +58,60 @@ export class DataService {
               for (let line of lines) {
                 const regex = /(Windows|Android)/gm;
                 const data = regex.exec(line);
-                if (data !== null ) {
+                if (data !== null) {
                   os.push(data[0]);
                 }
               }
             }
             return this.countQuantity(os);
             break;
+          case 'duration':
+            const lines2 = savings.split("\n");
+            const durations = [];
+            const durationsW = [];
+            let sumHours = 0;
+            let sumMinutes = 0;
+            if (lines) {
+              for (let line of lines2) {
+                const regex = /(\d+\:\d+\.0)/;
+                const data = regex.exec(line);
+                if (data !== null) {
+                  durations.push(data[0]);
+                }
+              }
+              for (const i in durations) {
+                durationsW.push(durations[i].split(":"));
+              }
+              console.log(durationsW);
+              for (const j in durationsW) {
+                sumHours += Number(durationsW[j][0]) / durationsW.length;
+                sumMinutes += Number(durationsW[j][1]) / durationsW.length;
+              }
+              const sum = Math.round(sumHours * 60 + sumMinutes);
+              const minutes = sum % 60;
+              const hours = (sum - minutes) / 60;
+              const result = [hours, minutes]
+              console.log(result);
+              return result;
+            }
+            break;
+          case 'get times':
+            const times = savings.split("\n");
+            const timeList = [];
+            let hoursT = [];
+            if (times) {
+              for (const time of times) {
+                const regex = /(\d+\:\d+)/;
+                const data = regex.exec(time);
+                if (data !== null) {
+                  timeList.push(data[0]);
+                }
+              }
+              for (const i in timeList) {
+                hoursT.push(timeList[i].split(":")[0], 0);
+              }
+              return this.countQuantity(hoursT);
+            }
         }
         break;
       case 'google' :
@@ -112,7 +159,7 @@ export class DataService {
                 instagramMessages.push([
                   j.sender,
                   j.created_at
-                  ]);
+                ]);
 
               }
             }
