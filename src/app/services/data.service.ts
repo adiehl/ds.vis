@@ -82,7 +82,6 @@ export class DataService {
               for (const i in durations) {
                 durationsW.push(durations[i].split(":"));
               }
-              console.log(durationsW);
               for (const j in durationsW) {
                 sumHours += Number(durationsW[j][0]) / durationsW.length;
                 sumMinutes += Number(durationsW[j][1]) / durationsW.length;
@@ -108,7 +107,7 @@ export class DataService {
                 }
               }
               for (const i in timeList) {
-                hoursT.push(timeList[i].split(":")[0], 0);
+                hoursT.push(timeList[i].split(":")[0]);
               }
               return this.countQuantity(hoursT);
             }
@@ -183,7 +182,7 @@ export class DataService {
       month =  '0' + month;
     }
     const year = date.getFullYear().toString();
-    const dateStr = day + month + year;
+    const dateStr = day + '.' + month + '.' + year;
     return dateStr;
   }
 

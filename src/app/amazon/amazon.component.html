@@ -1,3 +1,2 @@
-<pre>
-  {{output}}
-</pre>
+<app-time-chart *ngIf="showChart" chartType="bar" [dateData]="Daytimelabels" [numberData]="Daytimenumbers" label="Amazon Activity Hours"></app-time-chart>
+<app-time-chart *ngIf="showChart" [dateData]="labels" [numberData]="numbers" label="Amazon Account Activity"></app-time-chart>
