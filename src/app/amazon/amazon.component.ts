@@ -36,9 +36,13 @@ export class AmazonComponent implements OnInit {
   public async initActivityGraph(){
     const label = await this.amazon.getActivityData();
     const helpLabels = [];
+    const sum = 0;
     let helpLabels2 = [];
+    for(const i of label){
+      sum += Number(i.count);
+    }
     for(const line of label){
-      this.numbers.push(line.count);
+      this.numbers.push((Number(line.count)/sum) * 100);
       helpLabels.push(line.el);
     }
     helpLabels2 = this.sortDates(helpLabels);
