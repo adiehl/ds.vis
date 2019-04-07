@@ -28,9 +28,6 @@ export class InstagramService {
     return Promise.resolve(this.dataservice.getDataFromFile('instagram', 'messages', 'assets/messages.json'));
   }
 
-//alooooooooooooo
-
-
   async getLikesPerDay() {
     const likes = await this.dataservice.getDataFromFile('instagram', 'media likes', 'assets/likes.json');
 

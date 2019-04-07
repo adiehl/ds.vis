@@ -133,7 +133,8 @@ export class DataService {
         switch (column) {
           case 'media likes' :
             const instagramLikes = [];
-            const instagramData = savings.media_likes;
+            const savingsObject = JSON.parse(savings);
+            const instagramData = savingsObject.media_likes;
             for (const line of instagramData) {
               instagramLikes.push([
                 line[0],
