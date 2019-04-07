@@ -23,6 +23,9 @@ export class FileuploadComponent {
       this.db.saveFile(this.fileType, save.toString());
     };
   }
+  deleteData() {
+    this.db.clear();
+  }
   //
   // handleFileRead(event) {
   //   const save = JSON.parse(event.target.result);

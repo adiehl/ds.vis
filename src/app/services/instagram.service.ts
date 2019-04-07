@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import {AmazonService} from './amazon.service';
-import {GoogleService} from './google.service';
-import {HttpClient} from '@angular/common/http';
+import { DatabaseService } from './database.service';
 import {DataService} from './data.service';
 
 @Injectable({
@@ -9,12 +7,12 @@ import {DataService} from './data.service';
 })
 export class InstagramService {
 
-  constructor(public http: HttpClient, public dataservice: DataService) {
+  constructor(public dataservice: DataService, public db: DatabaseService) {
     console.log('Alright.');
   }
 
   returnMediaLikes() {
-    return this.dataservice.getDataFromFile('instagram', 'media likes', 'assets/likes.json');
+    return this.dataservice.getFile('instagram', 'media likes', 'assets/likes.json');
   }
 
   returnUsername() {
@@ -29,8 +27,7 @@ export class InstagramService {
   }
 
   async getLikesPerDay() {
-    const likes = await this.dataservice.getDataFromFile('instagram', 'media likes', 'assets/likes.json');
-
+    const likes = await this.getMediaLikesFromFile();
     const likes2 = [];
     let i;
     for (i = 0; i < likes.length; i++) {
@@ -56,6 +53,20 @@ export class InstagramService {
     */
 
     return likes;
+  }
+
+  protected async getMediaLikesFromFile() {
+    const savings = await this.db.getFile('instagram_likes');
+    const instagramLikes = [];
+    const savingsObject = JSON.parse(savings.toString());
+    const instagramData = savingsObject.media_likes;
+    for (const line of instagramData) {
+      instagramLikes.push([
+        line[0],
+        line[1]
+      ]);
+    }
+    return instagramLikes;
   }
 }
 

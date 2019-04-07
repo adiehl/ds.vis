@@ -13,4 +13,7 @@
     <label for="dataFile">Upload CSV or JSON data File</label>
     <input type="file" class="form-control-file" name="dataFile" id="dataFile" (change)="handleFileInput($event.target.files)">
   </div>
+  <div class="form-group">
+    <button class="btn btn-danger" (click)="deleteData()">Daten löschen</button>
+  </div>
 </form>
