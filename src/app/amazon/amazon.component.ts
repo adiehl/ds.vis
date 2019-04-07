@@ -15,8 +15,10 @@ export class AmazonComponent implements OnInit {
   public labels = [];
   public amount = [];
   public systems = [];
+  public hours = '';
   constructor(public amazon: AmazonService, public dataservice: DataService ) {
     this.initHoursGraph();
+    this.setAverageTime();
     this.initActivityGraph();
     this.initOsChart();
   }
@@ -94,6 +96,10 @@ export class AmazonComponent implements OnInit {
     return dates;
   }
 
+  public async setAverageTime(){
+    const time = await this.amazon.getDurations();
+    this.hours += time[0] + ' Minuten ' + time[1] + ' Sekunden';
+  }
   ngOnInit() {
 
   }
