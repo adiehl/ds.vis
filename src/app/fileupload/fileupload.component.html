@@ -18,11 +18,11 @@
   <!--</label>-->
   <div class="form-check" *ngFor="let dataType of dataTypes">
     <div class="row">
-      <div class="md-2 p-1">
+      <div class="md-3 p-1">
         <input class="dradio" type="radio" name="dataType" id="dataType_{{dataType.name}}" value="{{dataType.name}}" [(ngModel)]="fileType" >
-
+        <i *ngIf="uploads[dataType.name]" class="fa fa-check py-1 text-success"></i>
       </div>
-      <div class="md-10">
+      <div class="md-9">
         <label class="custom-control custom-radio dlabel" for="dataType_{{dataType.name}}">
           {{dataType.label}}
         </label>
