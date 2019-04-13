@@ -13,9 +13,14 @@ export class AmazonComponent implements OnInit {
   public showChart = false;
   public numbers = [];
   public labels = [];
+  public amount = [];
+  public systems = [];
+  public hours = '';
   constructor(public amazon: AmazonService, public dataservice: DataService ) {
     this.initHoursGraph();
+    this.setAverageTime();
     this.initActivityGraph();
+    this.initOsChart();
   }
 
   public async initHoursGraph() {
@@ -31,6 +36,15 @@ export class AmazonComponent implements OnInit {
       this.sort(this.Daytimelabels);
       this.showChart = true;
     }
+  }
+
+  public async initOsChart(){
+    const os = await this.amazon.getOperatingSystem();
+    for(const line of os){
+      this.systems.push(line.el);
+      this.amount.push(line.count);
+    }
+    this.showChart = true;
   }
 
   public async initActivityGraph(){
@@ -82,6 +96,10 @@ export class AmazonComponent implements OnInit {
     return dates;
   }
 
+  public async setAverageTime(){
+    const time = await this.amazon.getDurations();
+    this.hours += time[0] + ' Minuten ' + time[1] + ' Sekunden';
+  }
   ngOnInit() {
 
   }
