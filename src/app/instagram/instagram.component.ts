@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { InstagramService } from '../services/instagram.service';
+import { DatabaseService } from '../services/database.service';
 
 @Component({
   selector: 'app-instagram',
@@ -15,25 +16,28 @@ export class InstagramComponent implements OnInit {
   public labels2 = [];
   public showChart = false;
 
-  constructor(public instagram: InstagramService) {
+  constructor(public instagram: InstagramService, public db: DatabaseService) {
     this.loadChart();
   }
 
   public async loadChart() {
-    const likes = await this.instagram.getLikesPerDay();
-    const messages = await this.instagram.getMessagesPerDay();
+    const data = this.db.getFile('');
+    if (data) {
+      const likes = await this.instagram.getLikesPerDay();
+      const messages = await this.instagram.getMessagesPerDay();
 
-    for (const like of likes) {
-      this.numbers.push(like.count);
-      this.labels.push(like.el);
+      for (const like of likes) {
+        this.numbers.push(like.count);
+        this.labels.push(like.el);
+      }
+
+      for (const message of messages) {
+        this.numbers2.push(message.count);
+        this.labels2.push(message.el);
+      }
+      this.showChart = true;
     }
 
-    for (const message of messages) {
-      this.numbers2.push(message.count);
-      this.labels2.push(message.el);
-    }
-    this.showChart = true;
-    // this.output = JSON.stringify(likes);
   }
 
   ngOnInit() {

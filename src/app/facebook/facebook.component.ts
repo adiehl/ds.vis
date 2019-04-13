@@ -19,30 +19,33 @@ export class FacebookComponent implements OnInit {
   }
 
   public async loadDataAndShowChart() {
-    const statsObj = await this.getStats();
-    const stats = statsObj.activities;
-    const currentDate = statsObj.firstDate;
-    while (currentDate > statsObj.lastDate) {
-      const shortDate = this.getDateShort(currentDate);
-      let count = 0;
-      if (stats[shortDate]) {
-        count = stats[shortDate];
-      }
-      this.numbers.push(count);
+    const data = await this.db.getFile('facebook_activity');
+    if (data) {
+      const statsObj = await this.getStats();
+      const stats = statsObj.activities;
+      const currentDate = statsObj.firstDate;
+      while (currentDate > statsObj.lastDate) {
+        const shortDate = this.getDateShort(currentDate);
+        let count = 0;
+        if (stats[shortDate]) {
+          count = stats[shortDate];
+        }
+        this.numbers.push(count);
 
-      this.labels.push(shortDate);
-      currentDate.setDate(currentDate.getDate() - 1);
+        this.labels.push(shortDate);
+        currentDate.setDate(currentDate.getDate() - 1);
+      }
+      for (const stat of Object.keys(stats)) {
+        this.numbers.push(stats[stat]);
+        this.labels.push(stat);
+      }
+      // daytimes
+      for (let i = 0; i < 24; i++) {
+        this.Daytimelabels.push(i);
+        this.Daytimenumbers.push(statsObj.hours[i]);
+      }
+      this.showChart = true;
     }
-    for (const stat of Object.keys(stats)) {
-      this.numbers.push(stats[stat]);
-      this.labels.push(stat);
-    }
-    // daytimes
-    for (let i = 0; i < 24; i++) {
-      this.Daytimelabels.push(i);
-      this.Daytimenumbers.push(statsObj.hours[i]);
-    }
-    this.showChart = true;
   }
 
   public async getStats() {

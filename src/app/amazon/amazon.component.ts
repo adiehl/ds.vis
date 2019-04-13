@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AmazonService } from "../services/amazon.service";
 import { DataService} from "../services/data.service";
+import { DatabaseService } from '../services/database.service';
 
 @Component({
   selector: 'app-amazon',
@@ -15,12 +16,22 @@ export class AmazonComponent implements OnInit {
   public labels = [];
   public amount = [];
   public systems = [];
+  public noData = false;
   public hours = '';
-  constructor(public amazon: AmazonService, public dataservice: DataService ) {
-    this.initHoursGraph();
-    this.setAverageTime();
-    this.initActivityGraph();
-    this.initOsChart();
+  constructor(public amazon: AmazonService, public dataservice: DataService, public db: DatabaseService) {
+    this.start();
+  }
+
+  public async start() {
+    const savings = await this.db.getFile('amazon_searches');
+    if (savings) {
+      this.initHoursGraph();
+      this.setAverageTime();
+      this.initActivityGraph();
+      this.initOsChart();
+    } else {
+      this.noData = true;
+    }
   }
 
   public async initHoursGraph() {

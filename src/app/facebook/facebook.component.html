@@ -1,2 +1,7 @@
 <app-time-chart *ngIf="showChart" [dateData]="labels" [numberData]="numbers" label="Facebook Account Activity"></app-time-chart>
 <app-time-chart *ngIf="showChart" chartType="bar" [dateData]="Daytimelabels" [numberData]="Daytimenumbers" label="Facebook Activity Hours"></app-time-chart>
+<ng-container *ngIf="!showChart">
+    <div class="alert alert-danger" role="alert">
+        Please upload some data first.
+    </div>
+</ng-container>
